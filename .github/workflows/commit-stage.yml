@@ -35,7 +35,7 @@ jobs:
         uses: github/codeql-action/uplaod-sarif@v2
         if: success() || failure()
         with:
-          sarif_file: ${{step.scan.output.sarif}}
+          sarif_file: ${{steps.scan.output.sarif}}
       - name: Build,unit tests and integration tests
         run: |
           chmod +x gradlew
