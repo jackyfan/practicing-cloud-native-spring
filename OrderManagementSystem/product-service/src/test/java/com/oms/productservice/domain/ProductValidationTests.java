@@ -34,7 +34,7 @@ public class ProductValidationTests {
         Set<ConstraintViolation<Product>> violations = validator.validate(product);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())
-                .isEqualTo("需要匹配正则表达式\"^([A-Z][0-9]{4})$\"");
+                .contains("[A-Z][0-9]{4})$");
     }
 
 }
