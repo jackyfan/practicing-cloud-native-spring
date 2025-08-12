@@ -29,7 +29,8 @@ public class InMemoryProductRepository implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        return products.put(product.sku(), product);
+        products.put(product.sku(), product);
+        return product;
     }
 
     @Override
