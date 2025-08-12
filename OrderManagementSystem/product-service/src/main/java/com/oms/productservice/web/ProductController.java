@@ -2,7 +2,9 @@ package com.oms.productservice.web;
 
 import com.oms.productservice.domain.Product;
 import com.oms.productservice.domain.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +28,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product saveProduct(@RequestBody Product product) {
+    public Product saveProduct(@Valid @RequestBody Product product) {
         return productService.addProductToCatalog(product);
     }
 
@@ -37,7 +39,7 @@ public class ProductController {
     }
 
     @PutMapping("{sku}")
-    public Product updateProduct(@PathVariable String sku, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable String sku, @Valid @RequestBody Product product) {
         return productService.editProductDetails(sku, product);
     }
 
