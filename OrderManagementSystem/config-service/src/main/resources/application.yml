@@ -14,8 +14,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jackyfan/practicing-cloud-native-spring/OrderManagementSystem/config-repo
+          uri: https://github.com/jackyfan/practicing-cloud-native-spring.git
           default-label: main
+          search-paths: OrderManagementSystem/config-repo
           timeout: 5 #与远程仓库建立连接的时间限制
           clone-on-start: true #在启动时在本地克隆远程存储库
           force-pull: true #强制拉取远程存储库并丢弃任何本地更改
