@@ -7,6 +7,7 @@ import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,14 +24,15 @@ public class ProductValidationTests {
     @Test
     void whenAllFieldsCorrectThenValidationSucceeds() {
         var product =
-                new Product("A0001", "华为Mate70", 9.90);
+                Product.of("A0001", "华为Mate70", 9.90);
         Set<ConstraintViolation<Product>> violations = validator.validate(product);
         assertThat(violations).isEmpty();
     }
+
     @Test
     void whenSkuDefinedButIncorrectThenValidationFails() {
         var product =
-                new Product("a123456", "华为Mate70", 9.90);
+                Product.of("a123456", "华为Mate70", 9.90);
         Set<ConstraintViolation<Product>> violations = validator.validate(product);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())

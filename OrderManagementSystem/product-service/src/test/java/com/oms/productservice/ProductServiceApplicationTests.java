@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.time.Instant;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -14,8 +16,11 @@ class ProductServiceApplicationTests {
     private WebTestClient webTestClient;
 
     @Test
-    void whenPostRequestThenBookCreated() {
-        var expectedProduct = new Product("A0001", "华为Mate70", 199.99);
+    void whenPostRequestThenProductCreated() {
+        var expectedProduct = Product.of(
+                "A0001",
+                "华为Mate70",
+                199.99);
         webTestClient
                 .post()
                 .uri("/products")

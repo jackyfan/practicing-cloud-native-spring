@@ -8,6 +8,25 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+      request-connect-timeout: 5000
+      request-read-timeout: 5000
+      fast-fail: false #配置服务器关闭，您可能不想在本地环境中重试，特别是考虑到我们将其设为可选的支持服务
+      retry:
+        max-attempts: 6 #尝试最大次数
+        initial-interval: 1000 #初始间隔
+        max-interval: 2000 #最大间隔
+        multiplier: 1.1 #
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/omsdb_product
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+  sql:
+    init:
+      mode: always
+
 server:
   port: 9001
   tomcat:
@@ -16,3 +35,14 @@ server:
     threads:
       max: 50
       min-spare: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,env,beans,health
+
+
+
+
+

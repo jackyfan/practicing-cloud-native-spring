@@ -16,18 +16,18 @@ public class ProductController {
     }
 
     @GetMapping
-    public Iterable<Product> getProducts() {
+    public Iterable<Product> get() {
         return productService.viewProductList();
     }
 
     @GetMapping("{sku}")
-    public Product getProductBySku(@PathVariable String sku) {
+    public Product getBySku(@PathVariable String sku) {
         return productService.viewProductDetails(sku);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product saveProduct(@Valid @RequestBody Product product) {
+    public Product post(@Valid @RequestBody Product product) {
         return productService.addProductToCatalog(product);
     }
 
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @PutMapping("{sku}")
-    public Product updateProduct(@PathVariable String sku, @Valid @RequestBody Product product) {
+    public Product put(@PathVariable String sku, @Valid @RequestBody Product product) {
         return productService.editProductDetails(sku, product);
     }
 
