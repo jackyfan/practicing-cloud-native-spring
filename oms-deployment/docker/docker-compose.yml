@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  product-service:
+    depends_on:
+      - oms-postgres
+    image: "product-service"
+    container_name: "product-service"
+    ports:
+      - 9001:9001
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://oms-postgres:5432/omsdb_product
+      - SPRING_PROFILES_ACTIVE=testdata
+  oms-postgres:
+    image: "postgres:14.4"
+    container_name: "oms-postgres"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=omsdb_product
